@@ -2,6 +2,8 @@
 FROM dorowu/ubuntu-desktop-lxde-vnc:focal
 LABEL maintainer="Unity Robotics <unity-robotics@unity3d.com>"
 
+RUN rm -f /etc/apt/sources.list.d/google-chrome.list
+
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEV_NAME=rosdev
 ENV ROS_DISTRO=galactic
@@ -35,10 +37,13 @@ RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E
         /etc/apt/sources.list.d/ros2-latest.list && \
     apt-get update -q && \
     apt-get install -y --no-install-recommends \
-      ros-${ROS_DISTRO}-ros-base \
-      python3-rosdep \
-      python3-colcon-common-extensions \
-      python3-vcstool \
+        ros-${ROS_DISTRO}-ros-base \
+        ros-${ROS_DISTRO}-navigation2 \
+        ros-${ROS_DISTRO}-nav2-bringup \
+        ros-${ROS_DISTRO}-rviz2 \
+        python3-rosdep \
+        python3-colcon-common-extensions \
+        python3-vcstool\
     && rm -rf /var/lib/apt/lists/* && rm /etc/apt/sources.list.d/ros2-latest.list
 
 RUN useradd --create-home --home-dir /home/${DEV_NAME} --shell /bin/bash --user-group --groups adm,sudo ${DEV_NAME} && \
