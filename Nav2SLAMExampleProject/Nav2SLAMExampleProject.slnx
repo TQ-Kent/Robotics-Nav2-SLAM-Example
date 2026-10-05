@@ -1,4 +1,6 @@
 ﻿<Solution>
   <Project Path="PlayMode.csproj" />
   <Project Path="Unity.Robotics.Nav2Example.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
 </Solution>
